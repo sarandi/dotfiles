@@ -66,6 +66,7 @@ submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
     ~/.tmux-os.conf: os/macos/.macos.tmux.conf
     #  vim: set filetype=yaml ts=4 sw=4 tw=0 et :
    ```
+
   * task options: *default*, *link*, *clean*, *shell*
 * setup meta/profiles/profile files for each profile
   * this is simply an extensionless list of config files:
@@ -132,9 +133,7 @@ This project is cobbled together by  mny ideas gleaned from the following source
 
 ## TODOs
 
-1. consider making binaries from functions/scripts
-    1. [shc](https://github.com/neurobin/shc)
-1. hgj
+TODOs are now being logged at [TODO.md]
 
 ## License
 

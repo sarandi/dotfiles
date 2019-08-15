@@ -1,7 +1,10 @@
 # Dotfiles TODOs & Questions
 
 1. should extensions be represented with a variable? (see EXT_PSD in newsp.sh for use case)
-1. X
+1. Link README ToC
+1. Finish going through Checked Files list below and adding notes from files
+1. Remove old install files
+1. Get Extra auto-backups working
 
 ## Checked Files
 
