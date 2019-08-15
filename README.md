@@ -29,8 +29,7 @@ My initial goals were:
 1. Keep my secrets safe
 1. Get my dotfiles on github
 
-I moved my secrets and cleaned up my files to some extent, but after a few days
-research into available dotfiles tools, my goals changed to:
+I moved my secrets and cleaned up my files to some extent, but after a few days research into available dotfiles tools, my goals changed to:
 
 1. **Be able to document/see changes** (git)
 1. **Load configs for multiple envs** (dotbot)
@@ -58,21 +57,44 @@ submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
   ```
 
 * cd to the cloned directory
-* setup install.conf.yaml (The following steps will be changing soon)
-* run `./install`
+* setup meta/configs/config.yaml files for each set of configurations
+  * this follows the convention set by dotbot:
+
+  ```YAML
+  - link:
+    ~/.macos: os/macos/.macos
+    ~/.tmux-os.conf: os/macos/.macos.tmux.conf
+    #  vim: set filetype=yaml ts=4 sw=4 tw=0 et :
+   ```
+  * task options: *default*, *link*, *clean*, *shell*
+* setup meta/profiles/profile files for each profile
+  * this is simply an extensionless list of config files:
+
+  ``` TEXT
+  bin
+  apps
+  bash
+  filesystem
+  macos
+  path
+  utils
+  vim
+  ```
+
+* run `./install-profile profile1 [profile2,...]` to install any combination of profiles
 
 #### using
 
 * add/remove files by grouping them arrays passed to setSources() in
   .bash_profile
-  * (the sourcing method has been abstracted from [Mathias Bynen's bash_profile](https://github.com/mathiasbynens/dotfiles/blob/master/.bash_profile))
+  * the sourcing method has been abstracted from [Mathias Bynen's bash_profile](https://github.com/mathiasbynens/dotfiles/blob/master/.bash_profile)
 
   ```SHELL
-    main=($HOME/.{exports,path,apps,filesystem,utils,bash_prompt,macos});
-    setSources "$(echo ${main[*]})";
+    main=($HOME/.{path,apps,filesystem,utils,macos});
+    loadSources "$(echo ${main[*]})";
   ```
 
-  * run `./install`
+  * run `./install-profile profile1 [profile2,...]`
   * verify updates
 * if you're updating already sourced files, you don't need to run `./install`
 
