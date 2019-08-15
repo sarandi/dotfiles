@@ -7,12 +7,13 @@
 
 ## Table of Contents
 
-1. Goals/Requirements
-1. Setup
-1. Configuration
-1. Contributing
-1. Resources
-1. License
+1. [Goals/Requirements](#Goals/Requirements)
+1. [Setup](#Setup)
+1. [Configuration](#Configuration)
+1. [Contributing](#Contributing)
+1. [Resources](#)
+1. [TODOs](#TODOs)
+1. [License](#License)
 
 ## Goals/Requirements
 
