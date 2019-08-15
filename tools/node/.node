@@ -1,0 +1,4 @@
+# relies on command to call binary node; without command, this will loop until kill
+function node(){
+    command node -e "require('repl').start({prompt: '$ ', ignoreUndefined: true})";
+}

@@ -1,0 +1,115 @@
+# Unload .env Files (secrets)
+# Modified this to allow a filepath
+# Might also need to allow other filetypes
+
+    function unloadEnv(){  # [0]
+        filepath=$1;
+        unset $(grep -v '^#' $filepath | sed -E 's/(.*)=.*/\1/' | xargs)
+    }
+
+    # 20190813 - addded as an alternative option to unloadEnv
+    # 20190814 - this looks *really* OP. reconsider carefully 
+    function unloadPath(){  # [0]
+        filepath=$1;
+        unset $(grep -v '^#' $filepath/* | sed -E 's/(.*)=.*/\1/' | xargs)
+    }
+
+    # Same as above but needs to be extended to take loop over multiple files
+    function unloadPaths(){  # [0]
+        filepath=$1;
+        unset $(grep -v '^#' $filepath/* | sed -E 's/(.*)=.*/\1/' | xargs)
+    }
+
+
+    function abend(){ # [1]
+        stty sane
+        # removing exit keeps the session intact
+        #exit #Resets stty and then exits script
+    }
+
+
+    function DoAction(){ # [1]
+        stty -echo #Turn off echo
+        tput sc #Save cursor position
+        echo -ne "\033[0K\r" # Remove previous line
+        tput cuu1 #Go to previous line
+        tput el #clear to end of line
+        echo "You have $(($time-$count)) seconds" #Echo timer
+        echo -n "$Keys" #Echo currently typed text
+        stty echo #turn echo on
+        tput rc #return cursor
+    }
+
+
+# isFunction
+# Created: 20190804
+# Updated: 20190805
+# 20190805 - This isn't as robust as I would like especially since the point of loading
+# and unloading extras is to decrease security risks. Passing/invoking a function 
+# through stdin is a security risk if not checking type or stripping any malicious
+# user input, so unfortunately, the best option is likely exiting the active bash session.
+# I intend to keep developing this for increased security and eventual server use.
+
+    function isFunction(){ # [2]
+        myfunc=$1;
+        status=$?;
+        #if [ "$(type -t $myfunc)" = function ]; then
+        #    status=$?;
+        #    #echo $status;
+        #    return;
+        #else
+        #    echo "Sorry, that is not a valid function. Goodbye. \07";
+        #    sleep 3s;
+        #    #return 1;
+        #    exit;
+        #fi
+        # 20190805 - Keeping the above for now, just refactored below
+        if [ "$(type -t $myfunc)" != function ]; then
+            echo "Sorry, that is not a valid function. Goodbye. \07" && sleep 2s && exit;
+        fi
+        return;
+    }
+
+
+    function timedEntry(){ # [1]
+        trap abend SIGINT # Trap ctrl-c to return terminal to normal
+        stty -icanon time 0 min 0 -echo #turn of echo and set read time to nothing
+        keypress=''
+
+        time=$1;
+        inputtype=$2;
+        echo -e "You have $time seconds to enter" $inputtype " \n";
+        while Keys=$Keys$keypress; do
+                sleep 0.05
+                read keypress && break
+                ((clock  = clock + 1 ))
+                if [[ clock -eq 20 ]];then
+                        ((count++))
+                        clock=0
+                        DoAction $Keys   
+                fi
+                
+                if [[ $count -eq $time ]]; then
+                    echo -e "\n";
+                    if isFunction $Keys; then
+                        echo "you have run out of time. " && $Keys && abend;
+                    else
+                        abend
+                    fi                
+                fi
+        done
+
+        stty sane
+
+        # unset timedEntry variables so script will reload
+        for var in {count,time,inputtype,keypress,Keys}; do
+            unset $var;
+        done
+        #echo Your script was $Keys
+        #exit 0
+    }
+
+# Resources
+# 0. https://stackoverflow.com/a/20909045/2124430 second part of the first update
+# 1. https://stackoverflow.com/questions/34813704/bash-timed-input-show-countdown
+# 2. https://stackoverflow.com/questions/5431909/returning-a-boolean-from-a-bash-function/43840545

@@ -1,0 +1,13 @@
+
+# consider moving this to os/macos/.macos.processes
+# pretty print OS X Environment Variables [0]
+function pp_envvars(){
+    ps eww -o command $1 | tr ' ' '\n';
+}
+
+#alias ps="ps -ax | grep" #pass in app name
+#alias kc="kill -CONT" #pass in process number, combine with above
+#alias pskc="read PROGNAME; kill -CONT $(ps -ax | grep $PROGNAME | awk '{print $1}')"
+
+# Resources
+# 0. https://apple.stackexchange.com/questions/140327/how-can-i-inspect-the-environment-variables-of-a-running-process

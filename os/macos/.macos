@@ -1,0 +1,175 @@
+function Finder(){
+	open -a /System/Library/CoreServices/Finder.app $1;
+}
+
+# openFinderDir
+# arg 1: directory to open in finder
+# arg 2: if set to cd, the current CLI window will cd into the arg1 dir
+function openFinderDir(){
+	if [ "$2" == "cd" ]
+	then
+		cd $1; #"/Users/testuser/Documents/_my_library/_Projects/__project_notes";
+	fi
+
+	Finder $1; #"/Users/testuser/Documents/_my_library/_Projects/__project_notes";
+}
+
+# cd into whatever is the forefront Finder window.
+function cdf() {  # short for cdfinder [1]
+  cd "`osascript -e 'tell app "Finder" to POSIX path of (insertion location as alias)'`"
+}
+
+## Commence Bynenification
+
+# Close any open System Preferences panes, to prevent them from overriding
+# settings we’re about to change
+osascript -e 'tell application "System Preferences" to quit'
+
+# This throws a hitch in my giddalong, but I like this idea.
+# Ask for the administrator password upfront
+#sudo -v
+
+# Keep-alive: update existing `sudo` time stamp until `.macos` has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+###############################################################################
+# General UI/UX                                                               #
+###############################################################################
+
+# Set computer name (as done via System Preferences → Sharing)
+#sudo scutil --set ComputerName "0x6D746873"
+#sudo scutil --set HostName "0x6D746873"
+#sudo scutil --set LocalHostName "0x6D746873"
+#sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "0x6D746873"
+
+# Set standby delay to 24 hours (default is 1 hour)
+#sudo pmset -a standbydelay 86400
+
+# Disable the sound effects on boot
+#sudo nvram SystemAudioVolume=" "
+
+# Disable transparency in the menu bar and elsewhere on Yosemite
+defaults write com.apple.universalaccess reduceTransparency -bool true
+
+# Set highlight color to green
+defaults write NSGlobalDomain AppleHighlightColor -string "0.764700 0.976500 0.568600"
+
+# Set sidebar icon size to medium
+#defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
+
+# Always show scrollbars
+defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
+# Possible values: `WhenScrolling`, `Automatic` and `Always`
+
+# 20190807 - This doesn't seem to work in High Sierra
+# Disable the over-the-top focus ring animation
+defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false
+
+# Disable smooth scrolling
+# (Uncomment if you’re on an older Mac that messes up the animation)
+#defaults write NSGlobalDomain NSScrollAnimationEnabled -bool false
+
+# 20190807 - Feels like this is slowing things down...?
+# Increase window resize speed for Cocoa applications
+#defaults write NSGlobalDomain NSWindowResizeTime -float 0.001
+
+# Expand save panel by default
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode -bool true
+defaults write NSGlobalDomain NSNavPanelExpandedStateForSaveMode2 -bool true
+
+# Expand print panel by default
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint -bool true
+defaults write NSGlobalDomain PMPrintingExpandedStateForPrint2 -bool true
+
+# Save to disk (not to iCloud) by default
+defaults write NSGlobalDomain NSDocumentSaveNewDocumentsToCloud -bool false
+
+# Automatically quit printer app once the print jobs complete
+defaults write com.apple.print.PrintingPrefs "Quit When Finished" -bool true
+
+# Disable the “Are you sure you want to open this application?” dialog
+defaults write com.apple.LaunchServices LSQuarantine -bool false
+
+## Jump
+
+# Reveal IP address, hostname, OS version, etc. when clicking the clock
+# in the login window
+#sudo defaults write /Library/Preferences/com.apple.loginwindow AdminHostInfo HostName
+
+# 20190807 - Tested - doesn't remove it from the bar
+# Disable Notification Center and remove the menu bar icon
+
+#launchctl unload -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist && killall NotificationCenter
+#launchctl load -w /System/Library/LaunchAgents/com.apple.notificationcenterui.plist && open /System/Library/CoreServices/NotificationCenter.app
+
+# If adding to the following settings, you'll need to reload this file
+# and also quit/restart any relevant program, i.e. making a change to 
+# keyboard repeat settings will require any text editor to be restarted.
+
+###############################################################################
+# Auto Correct/Capitalization and Text Substitution                           #
+###############################################################################
+
+# Disable automatic capitalization as it’s annoying when typing code
+defaults write NSGlobalDomain NSAutomaticCapitalizationEnabled -bool false
+
+# Disable smart dashes as they’re annoying when typing code
+defaults write NSGlobalDomain NSAutomaticDashSubstitutionEnabled -bool false
+
+# Disable automatic period substitution as it’s annoying when typing code
+defaults write NSGlobalDomain NSAutomaticPeriodSubstitutionEnabled -bool false
+
+# Disable smart quotes as they’re annoying when typing code
+defaults write NSGlobalDomain NSAutomaticQuoteSubstitutionEnabled -bool false
+
+# Disable auto-correct
+defaults write NSGlobalDomain NSAutomaticSpellingCorrectionEnabled -bool false
+
+###############################################################################
+# SSD-specific tweaks                                                         #
+###############################################################################
+
+# 20190807 - Disabled for now - needs testing.
+# Disable hibernation (speeds up entering sleep mode)
+#sudo pmset -a hibernatemode 0
+
+# Remove the sleep image file to save disk space
+#sudo rm /private/var/vm/sleepimage
+# Create a zero-byte file instead…
+#sudo touch /private/var/vm/sleepimage
+# …and make sure it can’t be rewritten
+#sudo chflags uchg /private/var/vm/sleepimage
+
+
+###############################################################################
+# Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
+###############################################################################
+
+# Increase sound quality for Bluetooth headphones/headsets [0]
+defaults write com.apple.BluetoothAudioAgent "Apple Bitpool Min (editable)" -int 50
+
+# Enable full keyboard access for all controls
+# (e.g. enable Tab in modal dialogs)
+defaults write NSGlobalDomain AppleKeyboardUIMode -int 3
+
+# Disable press-and-hold for keys in favor of key repeat
+defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
+
+# Set a blazingly fast keyboard repeat rate
+defaults write NSGlobalDomain KeyRepeat -int 1
+defaults write NSGlobalDomain InitialKeyRepeat -int 10
+
+# Stop iTunes from responding to the keyboard media keys
+launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
+
+
+
+## 20190807 - I have not included anything from the FINDER section or below
+# though there are several things I would like to include.
+
+
+# Resources
+# 0. https://github.com/mathiasbynens/dotfiles/blob/master/.macos
+# 1. https://github.com/paulirish/dotfiles/blob/master/.functions
+
+

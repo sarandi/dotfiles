@@ -1,0 +1,25 @@
+# This should be split into multiple files:
+# 1. generic config with paths for default user stuff
+# 2. specific config for this machine
+# 3. applications -> their own files
+
+# Path Conventions:
+
+# - Set pass path initially so that subsequent additions are at the end of the
+#   chain
+# - Use $HOME instead of ~  UNTIL I can find why to do it the other way around ( ͡° ͜ʖ ͡°)
+# - Other paths may exist outside of shells/bash/.path, but should be confined to
+#   a file within apps/, by default apps/.apps
+
+# Setting PATH for Python 3.6
+# The original version is saved in .bash_profile.pysave
+PATH="$PATH:/Library/Frameworks/Python.framework/Versions/3.6/bin";
+PATH="$PATH:/usr/local/bin/python2.7";
+PATH="$PATH:/usr/local/opt/gnu-getopt/bin" # /getopt alternative to built-in getopt
+PATH="$PATH:/usr/local/Cellar/qt5/5.5.0/bin/";
+PATH="$PATH:/usr/local/bin";
+PATH="$PATH:$HOME/bin";
+PATH="$PATH:$HOME/bin/scripts";
+PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin/"; # Add Visual Studio Code (code)
+
+export PATH;

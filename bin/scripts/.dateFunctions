@@ -1,0 +1,5 @@
+# date j needs leading zeroes to be removed
+# trying to test this by printing 2019-01-01
+function modDayOfTheYear(){
+    echo $(($(date '+%j') % 8))
+}

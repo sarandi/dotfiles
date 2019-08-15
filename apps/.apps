@@ -1,0 +1,68 @@
+#!/usr/bin/env bash
+
+if [ -f ~/bin/scripts/.gitx ]; then
+    . ~/bin/scripts/.gitx;
+fi
+
+if [ -f ~/bin/scripts/.csv ]; then
+    . ~/bin/scripts/.csv;
+fi
+
+if [ -f ~/bin/scripts/.bash ]; then
+    . ~/bin/scripts/.bash;
+fi
+
+######## Node ########
+
+# NVM
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+PATH=$PATH:$NVM_DIR; # Add RVM to PATH for scripting
+
+######## Ruby ########
+
+# RVM
+source /Users/"$(whoami)"/.rvm/scripts/rvm
+PATH="$PATH:$HOME/.rvm/bin";
+
+######## Packages -- Mostly Cask (I think) ########
+
+# This exports installed package aliases/symlinks
+export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/X11/lib/pkgconfig/
+for i in `ls /usr/local/opt/`;
+do
+    if [ -d "/usr/local/opt/$i/lib/pkgconfig" ];
+    then export PKG_CONFIG_PATH=$PKG_CONFIG_PATH:"/usr/local/opt/$i/lib/pkgconf\
+ig";
+    fi;
+done
+
+######## Google ########
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '$HOME/tools/google-cloud-sdk/path.bash.inc' ]; then . '$HOME/tools/google-cloud-sdk/path.bash.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '$HOME/tools/google-cloud-sdk/completion.bash.inc' ]; then . '$HOME/tools/google-cloud-sdk/completion.bash.inc'; fi
+
+######## ALIASES ########
+
+# Development
+alias xcode="open -a Xcode";
+
+# Media
+alias itunes="open /Applications/iTunes.app/Contents/MacOS/iTunes";
+alias vlc="/Applications/VLC.app/Contents/MacOS/VLC";
+
+# Nets
+alias ff="/Applications/Firefox.app/Contents/MacOS/firefox &"; #ultimate ampersand indicates bg program launch
+alias shorten='~/shorten.sh' # http://bit.ly/1mHh5IK - complete this
+
+# Design
+alias dcm="open -a /Applications/Utilities/Digital\ Color\ Meter.app";
+
+# exporting the path is critical here otherwise app paths won't be included
+export PATH;
+
+#Sort

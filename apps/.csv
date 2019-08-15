@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+
+#export LIBREOFFICEDIR="sudo /Applications/LibreOffice.app/Contents/MacOS/soffice";
+#export LIBREOFFICEXLSTOCSV='--headless convert-to csv $inputfile --outdir $outdirorblank';
+
+#in2csv - for converting Excel to CSV files
+#in2csv data.xlsx > data.csv

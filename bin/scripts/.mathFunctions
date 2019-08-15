@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# 20190814
+# isn't this really more of a text formatting function?
+# but then so too are dates that only deal with formatting?
+# should I make a .formatting file?
+function thou(){
+    
+    printf "%'d" "$1";
+    #printf "\n";
+
+}

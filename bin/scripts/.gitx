@@ -1,0 +1,13 @@
+#!/usr/bin/env bash
+
+#Git - http://gitimmersion.com/lab_11.html
+alias gs='git status ';
+alias ga='git add ';
+alias gA='git add -A';
+alias gb='git branch ';
+alias gc='git commit';
+alias gd='git diff';
+alias go='git checkout ';
+alias gob='git checkout -b'; #Untested as of 20190708
+#alias gk='gitk --all&'
+#alias gx='gitx --all'

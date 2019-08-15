@@ -1,0 +1,80 @@
+#!/usr/bin/env bash
+function removeFirstLine(){
+	file=$1;
+	tail -n +2 "$file" > "$file.tmp" && mv "$file.tmp" "$file"
+}
+
+function removeSpaces(){
+	string_with_spaces="$*";
+	no_spaces="$(echo "${string_with_spaces}" | tr -d '[:space:]')";
+	echo $no_spaces;
+
+	return 0;
+}
+
+function removePunctuation(){
+	string_with_spaces="$*";
+	no_punct="$(echo "${string_with_spaces}" | tr -d '[:punct:]')";
+	echo $no_punct;
+
+	return 0;
+}
+
+function toLowerCase(){
+	string_with_spaces="$*";
+	lowercase_string="$(echo "${string_with_spaces}" | tr '[:upper:]' '[:lower:]')";
+	echo $lowercase_string;
+
+	return 0;
+}
+
+function toUpperCase(){
+	string_with_spaces="$*";
+	uppercase_string="$(echo "${string_with_spaces}" | tr '[:lower:]' '[:upper:]')";
+	echo $uppercase_string;
+
+	return 0;
+}
+
+##
+#	Notes:
+#	abstract/refactor the above tr-posix-based functions into the immediately below
+#
+##
+function posixTranslate(){
+	string_with_spaces="$*";
+	return 0;
+}
+
+function bashPrompt(){
+	prompt=$1;
+	echo $($prompt);
+	#echo $filename;
+	#while no confirmation flag isn't present, ask for confirmation
+}
+
+function withinRange(){ 
+# take min max check if inbetween
+return 0;
+}
+
+function lessThan(){
+	#$input, $size
+	#if input is less than
+	return 0;
+}
+
+
+function prependZero(){
+	#append a zero and return the new string
+	return 0;
+}
+
+function listOptions(){
+	return 0;
+}
+
+function overrideInput(){
+
+	return 0;
+}

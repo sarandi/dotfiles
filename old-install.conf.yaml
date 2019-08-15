@@ -1,0 +1,24 @@
+- defaults:
+    link:
+      relink: true
+
+- clean: ['~']
+
+- link:
+    #~/.dotfiles: ''
+    ~/bin: bin
+    ~/.apps: apps/.apps
+    ~/.bash_profile: shells/bash/.bash_profile
+    ~/.bashrc: shells/bash/.bashrc
+    #~/.extra: .extra
+    ~/.filesystem: bin/filesystem/.filesystem
+    ~/.macos: os/macos/.macos
+    ~/.path: shells/bash/.path
+    ~/.tmux.conf: terminals/tmux/.tmux.conf
+    ~/.tmux-osx.conf: os/macos/.macos.tmux.conf
+    ~/.utils: bin/utils/.utils
+    ~/.vim: editors/vim/.vim
+    ~/.vimrc: editors/vim/.vimrc
+
+- shell:
+  - [git submodule update --init --recursive, Installing submodules]

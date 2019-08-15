@@ -1,0 +1,4 @@
+- link:
+    ~/.bash_profile: shells/bash/.bash_profile
+    ~/.bashrc: shells/bash/.bashrc
+#  vim: set filetype=yaml ts=4 sw=4 tw=0 et :

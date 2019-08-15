@@ -1,0 +1,4 @@
+- link:
+    ~/.macos: os/macos/.macos
+    ~/.tmux-os.conf: os/macos/.macos.tmux.conf
+#  vim: set filetype=yaml ts=4 sw=4 tw=0 et :

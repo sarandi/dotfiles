@@ -1,0 +1,42 @@
+#!/usr/bin/env bash
+
+#wstart(){
+#    
+#    case
+#
+#    esac
+#}
+#  
+
+
+
+#alias wat-sdos=startDoS "$@";
+#alias wat-se-dos="echo '$@' | watson start email-dos";
+#alias wat-se-recap="echo '$@' | watson start email-recap";
+#alias wat-p="watson stop";
+
+# watson start [proj-code] [tags: project-type: event: fulldate: year: month: misc]
+# watson stop
+# watson restart [proj-code]
+# watson status
+
+# add        Add time for project with tag(s) that was not tracked live.
+# aggregate  Display a report of the time spent on each project aggregated...
+# cancel     Cancel the last call to the start command.
+# config     Get and set configuration options.
+# edit       Edit a frame.
+# frames     Display the list of all frame IDs.
+# help       Display help information
+# log        Display each recorded session during the given timespan.
+# merge      Perform a merge of the existing frames with a conflicting...
+# projects   Display the list of all the existing projects.
+# remove     Remove a frame.
+# rename     Rename a project or tag.
+# report     Display a report of the time spent on each project.
+# restart    Restart monitoring time for a previously stopped project.
+# start      Start monitoring time for the given project.
+# status     Display when the current project was started and the time
+#            spent...
+# stop       Stop monitoring time for the current project.
+# sync       Get the frames from the server and push the new ones.
+# tags       Display the list of all the tags.

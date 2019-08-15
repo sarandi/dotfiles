@@ -1,0 +1,67 @@
+#!/usr/bin/env bash
+
+# Overview: filesytem related functions, variables, etc.
+# Mac OS related features are being migrated to .macos
+
+# Changelog/Notes
+
+# Date Unknown
+# Filesystem running as ". /location/script.sh" runs the script in the current
+# shell instead of a subshell. Without doing the above, you can't cd into a
+# freshly created directory because the cd will apply to the subshell, not your
+# working shell (not sure when I wrote this, though it was fairly recently. 
+# I'm also a bit confused by what it means really - I think I maybe wasn't
+# as well-informed about bash as I am now?
+
+# 20190804
+# Removed export -f funcName following each function here as loading via
+# source or . should make them accessible across sub/shells.
+# Started migrating Mac OS features to .macos (from .osx)
+#
+
+alias lss="ls -al";
+
+# find shorthand [2]
+function f() {
+	find . -name "$1" 2>&1 | grep -v 'Permission denied'
+}
+
+function dirExists(){
+	[ -d "$1" ]
+	if [ $? -eq 0 ]; then
+		echo "true"
+	fi
+}
+
+function returnFileSize(){
+	filename=$1;
+	#echo $filename;
+	raw=$(stat -f %z $filename);
+	filesize=$(echo "$raw / 1000000" | bc); # [0]
+	echo $filesize; 
+}
+
+# Copy w/ progress [2]
+function cp_p () { 
+  rsync -WavP --human-readable --progress $1 $2
+}
+
+# get gzipped size [2]
+# Needs Testing
+function gz() {
+	echo "orig size    (bytes): "
+	cat "$1" | wc -c
+	echo "gzipped size (bytes): "
+	gzip -c "$1" | wc -c
+}
+
+######## Aliases ######################################
+
+alias newdir=". ~/bin/newdir.sh"; # 20190804 - sourcing this for sub/shell access
+
+
+
+# Resources
+# 0. https://www.lifewire.com/use-the-bc-calculator-in-scripts-2200588
+# 1.
+# 2. https://github.com/paulirish/dotfiles/blob/master/.functions

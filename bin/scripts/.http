@@ -1,0 +1,13 @@
+
+# Start an HTTP server from a directory, optionally specifying the port
+# Needs statikk
+function server() { # [0]
+	local port="${1:-8000}"
+	open "http://localhost:${port}/" &
+ 	# statikk is good because it won't expose hidden folders/files by default.
+ 	# yarn global add statikk
+ 	statikk --port "$port" .
+}
+
+# Resources:
+# 0. https://github.com/paulirish/dotfiles/blob/master/.functions

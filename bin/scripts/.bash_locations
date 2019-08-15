@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+
+function proj(){
+	openFinderDir "/Users/testuser/Documents/_my_library/_Projects/__project_notes" $1;
+}
+
+export -f proj;
+
+function d3(){
+	openFinderDir "/Users/testuser/Documents/_my_library/_Media/3D" $1;
+}
+
+export -f d3;
+
+#locations
+alias h="cd ~/";
+alias c="cd ~/Documents/_my_library/dev2";
+alias d="cd /Volumes/store/downloads";
+#alias d3=;
+
