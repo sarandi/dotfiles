@@ -9,7 +9,10 @@
 1. consider making binaries from functions/scripts: [shc](https://github.com/neurobin/shc)
 1. ~~add .gitkeep to empty dirs~~
 1. Learn syntax for communicating unix commands/input/etc.
-1. Describe Extras setup
+1. Define and Describe Extras setup in README
+    1. This includes possibly using `inotify` to detect filesystem changes for encryption/sourcing/unsourcing/archiving files.
+    1. Consider security around extra: gpg? sudo? UX must be seamless. 
+1. Need to add `$HOME/.config` and its files
 
 ## Checked Files
 
