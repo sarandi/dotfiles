@@ -33,6 +33,20 @@ function dirExists(){
 	fi
 }
 
+# 20190815 - untested
+function matchRename(){
+	newdir=$1
+	old=$2
+	new=$3
+	cd $newdir;
+	for f in *$(2); do 
+
+		#mv "$f" "$(echo "$f" | sed s/IMG/VACATION/)";
+		mv "$f" "$(echo "$f" | sed s/$(2)/$(3)/)"; # Might need to \$ escape for sed
+
+	done
+}
+
 function returnFileSize(){
 	filename=$1;
 	#echo $filename;

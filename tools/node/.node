@@ -1,4 +1,39 @@
-# relies on command to call binary node; without command, this will loop until kill
+# Relies on command to call binary node; without command, this will loop until kill
 function node(){
-    command node -e "require('repl').start({prompt: '$ ', ignoreUndefined: true})";
+    $HOME/.nvm/versions/node/v8.6.0/bin/node -e "require('repl').start({prompt: '$ ', ignoreUndefined: true})";
 }
+
+# This WORKS!
+#alias node=$'$HOME/.nvm/versions/node/v8.6.0/bin/node -e "require(\'repl\').start({prompt: \'$ \', ignoreUndefined: true})"';
+
+
+# runs, no visible errors; node doesn't start
+#alias node=$(/usr/bin/node -e "require('repl').start({prompt: '$ ', ignoreUndefined: true})");
+
+# hangs
+#alias node=$($HOME/.nvm/versions/node/v8.6.0/bin/node -e "require('repl').start({prompt: '$ ', ignoreUndefined: true})");
+
+#alias node="$(/usr/bin/node -e "require('repl').start({prompt: '$ ', ignoreUndefined: true})")";
+
+
+#alias node="$(node -e $'"require(\'repl\').start({prompt: \'$ \', ignoreUndefined: true})"')";
+
+#alias node="$(node -e $'"require(\'repl\').start({prompt: \'$ \', ignoreUndefined: true})"')";
+
+#alias node="$(node -e $'"require(\'repl\').start({prompt: \'$ \', ignoreUndefined: true})"')";
+
+
+
+#alias node=$(command \node -e "require('repl').start({prompt: '$ ', ignoreUndefined: true})");
+
+# runs, no visiable errors, repl doesn't start with desired options
+#alias node="$(command -v \node -e $'"require(\'repl\').start({prompt: \'$ \', ignoreUndefined: true})"')";
+
+# same as above without the escaped single quote string; runs, no visiable errors, repl doesn't start with desired options; 
+#alias node="$(command -v \node -e "require('repl').start({prompt: '$ ', ignoreUndefined: true})")";
+
+# same as above minus -v flag on command; hangs on load
+#alias node="$(command \node -e "require('repl').start({prompt: '$ ', ignoreUndefined: true})")";
+
+# same as above with -v, but without escaped \node; runs, no visiable errors, repl doesn't start with desired options;
+#alias node="$(command -v node -e "require('repl').start({prompt: '$ ', ignoreUndefined: true})")";

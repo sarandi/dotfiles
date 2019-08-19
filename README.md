@@ -1,8 +1,11 @@
 # Sarandos's Dotfiles
 
+* These dotfiles are managed using
+[dotbot](https://github.com/anishathalye/dotbot) and [git
+submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
 * Feel free to skip the goals/requirements. It's mostly me rambling through my process to make sure I'm not forgetting things.
 * I maintain this repo as _my_ dotfiles
-* You're quite welcome to use them, but you probably shouldn't use them as-is because they'll likely not suit your needs.
+* You're quite welcome to pick and choose from my settings, but you probably shouldn't use them as-is because they'll likely not suit your needs.
 * You're welcome to make suggestions/raise issues/etc.
 
 ## Table of Contents
@@ -44,11 +47,7 @@ initial commit
 
 ### Installing and Using
 
-These dotfiles are managed using
-[dotbot](https://github.com/anishathalye/dotbot) / [git
-submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
-
-#### installing
+#### Installing
 
 * fork this repo
 * clone the forked repo to your user's $HOME/.dotfiles:
@@ -56,6 +55,41 @@ submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
   ```BASH
   ~$ git clone --recursive https://github.com/sarandi/dotfiles ~/.dotfiles
   ```
+
+#### Using
+
+
+
+* add/remove files by grouping them arrays passed to setSources() in
+  .bash_profile
+  * the sourcing method has been abstracted from [Mathias Bynen's bash_profile](https://github.com/mathiasbynens/dotfiles/blob/master/.bash_profile)
+
+  ```SHELL
+    main=($HOME/.{path,apps,filesystem,utils,macos});
+    loadSources "$(echo ${main[*]})";
+  ```
+
+  * run `./install-profile profile1 [profile2,...]`
+  * verify updates
+* if you're updating already sourced files, you don't need to run `./install-profile profile(s)`
+
+#### Maintenance
+
+* update meta/base.yaml to set defaults and any shared configurations
+* add/update meta/profiles/\<profile\> to define profile
+* add/update meta/configs/\<config.yaml\> to symlink configs
+* stage/commit/push changes
+* or [cherrypick commits](https://git-scm.com/docs/git-cherry-pick) you like from others
+
+## Configuration
+
+### Overview
+
+Please refer to [dotbot's configuration](https://github.com/robobenklein/dotbot#configuration) for how to structure your configuration files.
+
+More specifically, I'm using the complex configuration/install process outline [here](#).
+
+### Complex Dotbot Configuration
 
 * cd to the cloned directory
 * setup meta/configs/config.yaml files for each set of configurations
@@ -85,31 +119,6 @@ submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
 
 * run `./install-profile profile1 [profile2,...]` to install any combination of profiles
 
-#### using
-
-* add/remove files by grouping them arrays passed to setSources() in
-  .bash_profile
-  * the sourcing method has been abstracted from [Mathias Bynen's bash_profile](https://github.com/mathiasbynens/dotfiles/blob/master/.bash_profile)
-
-  ```SHELL
-    main=($HOME/.{path,apps,filesystem,utils,macos});
-    loadSources "$(echo ${main[*]})";
-  ```
-
-  * run `./install-profile profile1 [profile2,...]`
-  * verify updates
-* if you're updating already sourced files, you don't need to run `./install`
-
-#### maintenance
-
-* update install.conf.yaml to map files
-* commit/push changes you want
-* or [cherrypick commits](https://git-scm.com/docs/git-cherry-pick) you like from others
-
-## Configuration
-
-Please refer to [dotbot's configuration](https://github.com/robobenklein/dotbot#configuration) for how to structure your configuration files.
-
 <!--## Wiki
 
 Will consider if necessary
@@ -124,7 +133,7 @@ If you want to do the work yourself, you can fork/clone/develop and issue a pull
 
 ## Resources
 
-This project is cobbled together by  mny ideas gleaned from the following sources. Thank you to all their authors and contributors.
+This project is cobbled together by many ideas gleaned from the following sources. Thank you to all their authors and contributors.
 
 1. <https://github.com/mathiasbynens/dotfiles>
 1. <https://github.com/paulirish/dotfiles>
