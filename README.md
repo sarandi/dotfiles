@@ -4,7 +4,7 @@
 [dotbot](https://github.com/anishathalye/dotbot) and [git
 submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
 * Feel free to skip the goals/requirements. It's mostly me rambling through my process to make sure I'm not forgetting things.
-* I maintain this repo as _my_ dotfiles
+* I maintain this repo as _my_ dotfiles.
 * You're quite welcome to pick and choose from my settings, but you probably shouldn't use them as-is because they'll likely not suit your needs.
 * You're welcome to make suggestions/raise issues/etc.
 
@@ -30,15 +30,15 @@ keep things moving and focused on the next big task.
 
 My initial goals were:
 
-1. Keep my secrets safe
-1. Get my dotfiles on github
+1. Keep my secrets safe.
+1. Get my dotfiles on github.
 
 I moved my secrets and cleaned up my files to some extent, but after a few days research into available dotfiles tools, my goals changed to:
 
-1. **Be able to document/see changes** (git)
-1. **Load configs for multiple envs** (dotbot)
-1. **keep secrets *protected*, yet in sync with the rest of the system** (dotbot + custom bash functions)
-1. **Allow for easy integration of other projects** (git submodules)
+1. **Be able to document/see changes** (git).
+1. **Load configs for multiple envs** (dotbot).
+1. **Keep secrets *protected*, yet in sync with the rest of the system** (dotbot + custom bash functions).
+1. **Allow for easy integration of other projects** (git submodules).
 
 Now almost 3 weeks later I finally have my secrets buttoned up and am making an
 initial commit
@@ -47,8 +47,8 @@ initial commit
 
 ### Installing
 
-* fork this repo in github (unless you are me)
-* clone the forked repo to $HOME/.dotfiles:
+* Fork this repo in github (unless you are me).
+* Clone the forked repo to $HOME/.dotfiles:
 
   ```SHELL
   ~$ git clone --recursive https://github.com/sarandi/dotfiles ~/.dotfiles
@@ -58,7 +58,7 @@ initial commit
 
 To use these dotfiles, use dotbot to load a set of [configuration](#Configuration) files.
 
-* You can install one or more profile with:
+* You can install one or more profiles with:
 
   ```SHELL
   ./install-profile <profile> [<configs...>]
@@ -83,14 +83,14 @@ My [.bash_profile](.bash_profile) makes resources available by using the `source
     loadSources "$(echo ${main[*]})";
   ```
 
-  * [My sourcing function](.bash_profile#L9) has been abstracted from [Mathias Bynen's bash_profile](https://github.com/mathiasbynens/dotfiles/blob/master/.bash_profile#L7)
+  * [My sourcing function](.bash_profile#L9) has been abstracted from the more typical form, as seen in [Mathias Bynen's bash_profile source loading](https://github.com/mathiasbynens/dotfiles/blob/master/.bash_profile#L7)
 
-* if you're updating already installed and sourced files, you don't need to run `./install-profile profile(s)` but you *do* need to either:
-  * start a new shell
-    * via your terminal
-    * same shell: issue `exec bash -l` [^1]
-  * source the file in manually if you don't want to start a new shell
-  * this also includes moving files
+* If you're updating already installed and sourced files, you don't need to run `./install-profile profile(s)` but you *do* need to either:
+  * Start a new shell
+    * via your terminal (cmd+T in iTerm).
+    * in the same shell: issue `exec bash -l`. [^1]
+  * Source the file in manually if you don't want to start a new shell.
+  * This also includes moving files.
 
 #### Extras
 
@@ -98,11 +98,11 @@ My [.bash_profile](.bash_profile) makes resources available by using the `source
 
 #### Maintenance
 
-* update meta/base.yaml to set defaults and any shared configurations
-* add/update meta/profiles/\<profile\> to define profile
-* add/update meta/configs/\<config.yaml\> to symlink configs
-* stage/commit/push changes
-* or [cherrypick commits](https://git-scm.com/docs/git-cherry-pick) you like from others
+* Update meta/base.yaml to set defaults and any shared configurations.
+* Add/update meta/profiles/\<profile\> to define profile.
+* Add/update meta/configs/\<config.yaml\> to symlink configs.
+* Stage/commit/push changes
+* or [cherrypick commits](https://git-scm.com/docs/git-cherry-pick) you like from others.
 
 ## Configuration
 
@@ -114,20 +114,20 @@ More specifically, I'm using the advanced setup [outlined here][0]. However, the
 
 ### Advanced Dotbot Install
 
-1. Create your .dotfile directory - I use `.dotfiles`
-1. In .dotfiles root, create and populate a `.gitignore` file
-1. In .dotfiles root, initiate git with `git init`
-1. Get the advanced dotbot install scripts and save them to .dotbot root
+1. Create your .dotfile directory - I use `.dotfiles`.
+1. In .dotfiles root, create and populate a `.gitignore` file.
+1. In .dotfiles root, initiate git with `git init`.
+1. Get the advanced dotbot install scripts and save them to .dotbot root.
    1. [install-profile](https://github.com/anishathalye/dotbot/wiki/Tips-and-Tricks#install-profile)
    1. [install-standalone](https://github.com/anishathalye/dotbot/wiki/Tips-and-Tricks#install-standalone)
-   1. N.B. Notice these don't use a file extension
-1. In .dotfile root, create a config directory
-    1. The default name is meta
-    1. If you change from meta, you will have to update the `META_DIR` variables in  both the install scripts
+   1. N.B. Notice these don't use a file extension.
+1. In .dotfile root, create a config directory.
+    1. The default name is meta.
+    1. If you change from meta, you will have to update the `META_DIR` variables in  both the install scripts.
 1. Inside of meta create two more directories: `profiles` and `configs`
-1. Your user should have read/write/execute priviledges for all files and directories
+1. Your user should have read/write/execute privileges for all files and directories.
    1. You can set this recursively with `chmod -R 700 ~/.dotfiles`
-   1. Or you can alter to fit your needs - I usually use `755`
+   1. or you can alter to fit your needs - I usually use `755`.
 1. In .dotfile root, install the dotbot git submodule:
 
     ```SHELL
@@ -135,15 +135,15 @@ More specifically, I'm using the advanced setup [outlined here][0]. However, the
     git submodule add git@github.com:anishathalye/dotbot.git meta
     ```
 
-1. Setup your configuration files as follows
+1. Setup your configuration files as follows.
 
 ### Advanced Dotbot Configuration
 
 Dotbot accepts both YAML or JSON. My files exclusively use YAML because though it is whitespace dependent, I find managing whitespace easier than managing matching brackets. This is a personal preference, so feel free to change things for your own configurations.
 
-1. cd to the cloned directory
-1. setup meta/configs/config.yaml files for each set of configurations
-    1. this follows the convention set by dotbot:
+1. `cd` to the cloned directory
+1. Setup meta/configs/config.yaml files for each set of configurations.
+    1. This follows the convention set by dotbot:
 
         ```YAML
         - link:
@@ -152,9 +152,9 @@ Dotbot accepts both YAML or JSON. My files exclusively use YAML because though i
           #  vim: set filetype=yaml ts=4 sw=4 tw=0 et :
          ```
 
-    1. task options: *default*, *link*, *clean*, *shell*
-1. Setup `meta/profiles/<profile>` files for each profile
-   1. this is simply an extensionless list of config files:
+    1. Task options: *default*, *link*, *clean*, *shell*
+1. Setup `meta/profiles/<profile>` files for each profile.
+   1. This is simply an extensionless list of config files:
 
          ``` TEXT
          bin
@@ -167,7 +167,7 @@ Dotbot accepts both YAML or JSON. My files exclusively use YAML because though i
          vim
          ```
 
-1. Follow the directions in [Setup#Installing](#INSTALLING) and [Setup#Using](#USING) to test and use your configs
+1. Follow the directions in [Setup#Installing](#INSTALLING) and [Setup#Using](#USING) to test and use your configs.
 
 <!--## Wiki
 
