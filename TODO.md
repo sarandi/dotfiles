@@ -1,6 +1,6 @@
 # Dotfiles TODOs & Questions
 
-1. should extensions be represented with a variable? (see EXT_PSD in newsp.sh for use case)
+1. Should extensions be represented with a variable? (see EXT_PSD in newsp.sh for use case)
 1. ~~Link README ToC~~
 1. Finish going through Checked Files list below and adding notes from files
 1. ~~Remove old install files~~
@@ -8,12 +8,14 @@
 1. ~~Link README TODOs to this file~~
 1. consider making binaries from functions/scripts: [shc](https://github.com/neurobin/shc)
 1. ~~add .gitkeep to empty dirs~~
+1. Learn syntax for communicating unix commands/input/etc.
+1. Describe Extras setup
 
 ## Checked Files
 
 All files have been checked for secrets. I need to go through and document notes/questions below so I have everything in one place.
 
-```BASH
+```text
 apps/
     .apps
 bin/
