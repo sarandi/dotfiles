@@ -1,13 +1,15 @@
 # Dotfiles TODOs & Questions
 
-1. Should extensions be represented with a variable? (see EXT_PSD in newsp.sh for use case)
+1. ~~Totally user's call. I will try it - Should extensions be represented with
+a variable? (see EXT_PSD in newsp.sh for use case)~~
 1. ~~Link README ToC~~
 1. Finish going through Checked Files list below and adding notes from files
 1. ~~Remove old install files~~
 1. ~~Link README TODOs to this file~~
-1. consider making binaries from functions/scripts: [shc](https://github.com/neurobin/shc)
+1. ~~going forward with this - consider making binaries from functions/scripts:
+[shc](https://github.com/neurobin/shc)~~
 1. ~~add .gitkeep to empty dirs~~
-1. Learn syntax for communicating unix commands/input/etc.
+1. ~~Learn syntax for communicating unix commands/input/etc.~~
 1. Define and Describe Extras setup in README
     1. This includes possibly using `inotify` to detect filesystem changes for
 encryption/sourcing/unsourcing/archiving files
@@ -18,6 +20,8 @@ encryption/sourcing/unsourcing/archiving files
 gcloud, et al)
 1. How to include Fira Code font?
 1. Build and test multiple profiles
+1. Reorganize - architecture should reflect functionality
+1. Create v0.0.1 and tag it
 
 ## Checked Files
 
