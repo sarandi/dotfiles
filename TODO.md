@@ -9,9 +9,15 @@
 1. ~~add .gitkeep to empty dirs~~
 1. Learn syntax for communicating unix commands/input/etc.
 1. Define and Describe Extras setup in README
-    1. This includes possibly using `inotify` to detect filesystem changes for encryption/sourcing/unsourcing/archiving files.
+    1. This includes possibly using `inotify` to detect filesystem changes for
+encryption/sourcing/unsourcing/archiving files
     1. Consider security around extra: gpg? sudo? UX must be seamless.
-1. Need to add `$HOME/.config` and its files
+    1. gcloud stores unencrypted user data in $HOME/.config/gcloud
+    1. How to handle .ssh?
+1. Need to add `$HOME/.config` and any relevant files (consider how to handle
+gcloud, et al)
+1. How to include Fira Code font?
+1. Build and test multiple profiles
 
 ## Checked Files
 
