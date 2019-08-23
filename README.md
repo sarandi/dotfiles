@@ -81,17 +81,14 @@ To use these dotfiles, use dotbot to load a set of [configuration](#Configuratio
 
 My [.bash_profile](shells/bash/.bash_profile) makes resources available by using the `source` command. I'm avoiding the use of `source` alias `. <filename>` in preference of clarity over arcanity.
 
-* Add/remove files by grouping them into arrays and passing to setSources() for
-* example, in
-* [.bash_profile](shells/bash/.bash_profile#L9):
+* Add/remove files by grouping them into arrays and passing to setSources() for example, in [.bash_profile](shells/bash/.bash_profile#L9):
 
   ```SHELL
     main=($HOME/.{path,apps,filesystem,utils,macos});
     loadSources "$(echo ${main[*]})";
   ```
 
-  * [My sourcing
-  * function](shells/bash/.bash_profile#L9) has been abstracted from the more typical form, as seen in [Mathias Bynen's bash_profile source loading](https://github.com/mathiasbynens/dotfiles/blob/master/.bash_profile#L7)
+  * [My sourcing function](shells/bash/.bash_profile#L9) has been abstracted from the more typical form, as seen in [Mathias Bynen's bash_profile source loading](https://github.com/mathiasbynens/dotfiles/blob/master/.bash_profile#L7)
 
 * If you're updating already installed and sourced files, you don't need to run `./install-profile profile(s)` but you *do* need to either:
   * Start a new shell
