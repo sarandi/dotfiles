@@ -10,13 +10,14 @@ submodules](https://git-scm.com/book/en/v2/Git-Tools-Submodules).
 
 ## Table of Contents
 
-1. [Goals/Requirements](#Goals/Requirements)
-1. [Setup](#Setup)
-1. [Configuration](#Configuration)
-1. [Contributing](#Contributing)
-1. [Resources](#Resources)
-1. [TODOs](#TODOs)
-1. [License](#License)
+1. [Goals/Requirements](#goalsrequirements)
+1. [Dependencies](#Dependencies)
+1. [Setup](#setup)
+1. [Configuration](#configuration)
+1. [Contributing](#contributing)
+1. [Resources](#resources)
+1. [TODOs](#todos)
+1. [License](#license)
 
 ## Goals/Requirements
 
@@ -42,6 +43,10 @@ I moved my secrets and cleaned up my files to some extent, but after a few days 
 
 Now almost 3 weeks later I finally have my secrets buttoned up and am making an
 initial commit
+
+## Dependencies
+
+[TODO]
 
 ## Setup
 
@@ -74,16 +79,19 @@ To use these dotfiles, use dotbot to load a set of [configuration](#Configuratio
 
 #### Sourcing
 
-My [.bash_profile](.bash_profile) makes resources available by using the `source` command. I'm avoiding the use of `source` alias `. <filename>` in preference of clarity over arcanity.
+My [.bash_profile](shells/bash/.bash_profile) makes resources available by using the `source` command. I'm avoiding the use of `source` alias `. <filename>` in preference of clarity over arcanity.
 
-* Add/remove files by grouping them into arrays and passing to setSources() for example, in [.bash_profile](.bash_profile#L20):
+* Add/remove files by grouping them into arrays and passing to setSources() for
+* example, in
+* [.bash_profile](shells/bash/.bash_profile#L9):
 
   ```SHELL
     main=($HOME/.{path,apps,filesystem,utils,macos});
     loadSources "$(echo ${main[*]})";
   ```
 
-  * [My sourcing function](.bash_profile#L9) has been abstracted from the more typical form, as seen in [Mathias Bynen's bash_profile source loading](https://github.com/mathiasbynens/dotfiles/blob/master/.bash_profile#L7)
+  * [My sourcing
+  * function](shells/bash/.bash_profile#L9) has been abstracted from the more typical form, as seen in [Mathias Bynen's bash_profile source loading](https://github.com/mathiasbynens/dotfiles/blob/master/.bash_profile#L7)
 
 * If you're updating already installed and sourced files, you don't need to run `./install-profile profile(s)` but you *do* need to either:
   * Start a new shell
