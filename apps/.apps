@@ -51,6 +51,15 @@ if [ -f '$HOME/tools/google-cloud-sdk/completion.bash.inc' ]; then . '$HOME/tool
 # Development
 alias xcode="open -a Xcode";
 
+# Python
+# I set this up using: https://opensource.com/article/19/5/python-3-default-mac which recommends running the following:
+# echo -e 'if command -v pyenv 1>/dev/null 2>&1; then\n  eval "$(pyenv init -)"\nfi' >> $HOME/.dotfiles/shells/bash/.bash_profile;
+# Problem is these here dotfiles aren't configured as such. So the below is the above code rendered where I want it:
+
+if command -v pyenv 1>/dev/null 2>&1; then
+  eval "$(pyenv init -)"
+fi
+
 # Media
 alias itunes="open /Applications/iTunes.app/Contents/MacOS/iTunes";
 alias vlc="/Applications/VLC.app/Contents/MacOS/VLC";
